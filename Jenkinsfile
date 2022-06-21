@@ -12,17 +12,7 @@ node('workers'){
         sh 'echo "SKIPPING LINTING IN QA FOR NOW"'
     } 
 
-    stage('Unit Tests'){
-        sh "docker run --rm -v $PWD/coverage:/app/coverage ${imageName}-test npm run test"
-        publishHTML (target: [
-            allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: true,
-            reportDir: "$PWD/coverage/marketplace",
-            reportFiles: "index.html",
-            reportName: "Coverage Report"
-        ])
-    }
+ 
 
     stage('Static Code Analysis'){
         withSonarQubeEnv('sonarqube') {
