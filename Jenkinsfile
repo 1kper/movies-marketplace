@@ -14,20 +14,7 @@ node('workers'){
 
  
 
-    stage('Static Code Analysis'){
-        withSonarQubeEnv('sonarqube') {
-            sh 'sonar-scanner'
-        }
-    }
 
-    stage("Quality Gate"){
-        timeout(time: 5, unit: 'MINUTES') {
-            def qg = waitForQualityGate()
-            if (qg.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
-            }
-        }
-    }
 
     stage('Build'){
          sh "docker build -t 1kper/movies-marketplace   --build-arg ENVIRONMENT=sandbox ."
