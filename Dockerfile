@@ -3,9 +3,9 @@ ARG ENVIRONMENT
 ENV CHROME_BIN=chromium
 WORKDIR /app
 RUN apt-get update && apt-get install -y chromium
-COPY package-lock.json package.json .
+COPY package-lock.json package.json ./
 RUN npm i && npm i -g @angular/cli
-COPY . .
+COPY ./ ./
 RUN ng build -c $ENVIRONMENT
 
 FROM nginx:alpine
