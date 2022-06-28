@@ -23,9 +23,9 @@ node('workers'){
 
     stage('Push'){
         
-          sh "aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 635154829813.dkr.ecr.us-west-2.amazonaws.com"
-          sh  "docker tag 1kper/movies-marketplace:latest 635154829813.dkr.ecr.us-west-2.amazonaws.com/1kper/movies-marketplace:latest"
-          sh  "docker push 635154829813.dkr.ecr.us-west-2.amazonaws.com/1kper/movies-marketplace:latest"
+          sh "aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin .dkr.ecr.us-west-2.amazonaws.com"
+          sh  "docker tag 1kper/movies-marketplace:latest .dkr.ecr.us-west-2.amazonaws.com/1kper/movies-marketplace:latest"
+          sh  "docker push .dkr.ecr.us-west-2.amazonaws.com/1kper/movies-marketplace:latest"
             
     }
 }
